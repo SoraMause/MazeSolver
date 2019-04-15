@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>700</height>
+    <width>1100</width>
+    <height>850</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>920</x>
       <y>10</y>
       <width>101</width>
       <height>16</height>
@@ -30,9 +30,9 @@
    <widget class="QTextEdit" name="mazeFilePathEdit">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>30</y>
-      <width>171</width>
+      <x>830</x>
+      <y>40</y>
+      <width>201</width>
       <height>31</height>
      </rect>
     </property>
@@ -40,9 +40,9 @@
    <widget class="QPushButton" name="mazeFileLoadButton">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>30</y>
-      <width>31</width>
+      <x>1050</x>
+      <y>40</y>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
@@ -55,17 +55,17 @@
      <rect>
       <x>30</x>
       <y>30</y>
-      <width>600</width>
-      <height>600</height>
+      <width>750</width>
+      <height>750</height>
      </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="actionHistory">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>100</y>
-      <width>201</width>
+      <x>830</x>
+      <y>110</y>
+      <width>251</width>
       <height>321</height>
      </rect>
     </property>
@@ -73,8 +73,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>70</y>
+      <x>920</x>
+      <y>80</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -83,13 +83,26 @@
      <string>Action History</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>440</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Draw Maze</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>1100</width>
      <height>21</height>
     </rect>
    </property>

@@ -28,13 +28,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     map.cpp \
-    maze.cpp
+    maze.cpp \
+    mazepainter.cpp
 
 HEADERS += \
         mainwindow.h \
     map.h \
     mazeconf.h \
-    maze.h
+    maze.h \
+    mazepainter.h
 
 FORMS += \
         mainwindow.ui

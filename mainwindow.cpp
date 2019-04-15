@@ -7,14 +7,22 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    history_string.clear();
-    ui->mazeFilePathEdit->setReadOnly(true);
-    ui->actionHistory->setReadOnly(true);
+    init();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::init()
+{
+    history_string.clear();
+    ui->mazeFilePathEdit->setReadOnly(true);
+    ui->actionHistory->setReadOnly(true);
+    maze_paint = new MazePainter();
+    maze_paint->init(&scene);
+    ui->graphicsView->setScene(&scene);
 }
 
 void MainWindow::on_mazeFileLoadButton_clicked()
@@ -46,3 +54,9 @@ void MainWindow::on_mazeFileLoadButton_clicked()
 }
 
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    maze_paint->draw(&scene);
+    ui->graphicsView->setScene(&scene);
+}

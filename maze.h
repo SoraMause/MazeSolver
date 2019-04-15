@@ -66,6 +66,12 @@ public:
 
   uint8_t getMazeSize(){ return size; }
 
+  // 壁情報を得る
+  bool getWallData( uint8_t _x, uint8_t _y, uint8_t _direction)
+  {
+      return map->getData( _x, _y, _direction);
+  }
+
 private:
   // 歩数マップを更新
   void updateStepMap();
