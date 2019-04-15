@@ -25,6 +25,14 @@ void MainWindow::init()
     ui->graphicsView->setScene(&scene);
 }
 
+void MainWindow::writeHistoryDate()
+{
+    QDateTime dt = QDateTime::currentDateTime();
+
+    history_string += dt.toString("yyyy/MM/dd");
+    history_string += dt.toString(" hh:mm:ss\n");
+}
+
 void MainWindow::on_mazeFileLoadButton_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Text File (*.txt);;"));
@@ -41,10 +49,7 @@ void MainWindow::on_mazeFileLoadButton_clicked()
 
         QTextStream stream(&file);
 
-        QDateTime dt = QDateTime::currentDateTime();
-
-        history_string += dt.toString("yyyy/MM/dd");
-        history_string += dt.toString(" hh:mm:ss\n");
+        writeHistoryDate();
         history_string += "file load\n" + fileInfo.fileName() + "\n";
 
         ui->actionHistory->setText(history_string);
@@ -53,10 +58,11 @@ void MainWindow::on_mazeFileLoadButton_clicked()
     }
 }
 
-
-
 void MainWindow::on_pushButton_clicked()
 {
+    writeHistoryDate();
+    history_string += "Draw Maze Data\n";
+    ui->actionHistory->setText(history_string);
     maze_paint->draw(&scene);
     ui->graphicsView->setScene(&scene);
 }

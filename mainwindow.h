@@ -26,6 +26,8 @@ private slots:
 private:
     void init();
 
+    void writeHistoryDate();
+
     Ui::MainWindow *ui;
 
     QGraphicsScene scene;
