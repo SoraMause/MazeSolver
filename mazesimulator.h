@@ -13,6 +13,8 @@
 #include "maze.h"
 #include "map.h"
 
+#include "loadmaze.h"
+
 class MazeSimulator
 {
 public:
@@ -22,6 +24,8 @@ public:
     void drawMaze( QGraphicsScene *scene );
 
     void run( QGraphicsScene *scene );
+
+    void loadMaze( QTextStream *stream, QGraphicsScene *scene );
 
 
 public:
@@ -35,6 +39,8 @@ private:
     Position pos;
     ExistWall exist;
     Maze *maze;
+    LoadMaze *load;
+
 };
 
 #endif // MAZESIMULATOR_H

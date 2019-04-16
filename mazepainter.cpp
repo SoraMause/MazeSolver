@@ -19,7 +19,7 @@ void MazePainter::init(QGraphicsScene *scene)
     int step = BOX_SIZE;
 
     pen.setColor(Qt::gray);
-    pen.setWidth(2);
+    pen.setWidth(3);
 
     for ( int i = 0; i <= maze_scale; i++ ){
         scene->addLine(i*step, 0, i*step, maze_scale*step, pen);
@@ -45,7 +45,7 @@ void MazePainter::draw( QGraphicsScene *scene )
         scene->addLine(0, i*step, maze_scale*step, i*step, pen);
     }
 
-    pen.setWidth(2);
+    pen.setWidth(3);
 
     // 左下の座標が(x,y) = (0,0)となるようにする。
 

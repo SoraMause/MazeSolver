@@ -30,7 +30,8 @@ SOURCES += \
     map.cpp \
     maze.cpp \
     mazepainter.cpp \
-    mazesimulator.cpp
+    mazesimulator.cpp \
+    loadmaze.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     mazeconf.h \
     maze.h \
     mazepainter.h \
-    mazesimulator.h
+    mazesimulator.h \
+    loadmaze.h
 
 FORMS += \
         mainwindow.ui

@@ -55,6 +55,9 @@ void MainWindow::on_mazeFileLoadButton_clicked()
 
         writeHistoryDate( "file load\n" + fileInfo.fileName() + "\n" );
 
+        simulator->loadMaze(&stream, &scene);
+        ui->graphicsView->setScene(&scene);
+
         file.close();
     }
 }

@@ -297,3 +297,4 @@ void Map::addWall(uint8_t x, uint8_t y, bool n, bool w, bool s, bool e )
     if ( e ) manegeEastWall(x,y,true);
     else manegeEastWall(x,y,false);
 }
+

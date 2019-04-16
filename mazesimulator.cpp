@@ -19,6 +19,7 @@ MazeSimulator::MazeSimulator()
 MazeSimulator::~MazeSimulator()
 {
     delete maze_paint;
+    delete load;
 }
 
 void MazeSimulator::init()
@@ -26,6 +27,7 @@ void MazeSimulator::init()
     maze = Maze::getInstance();
     maze_paint = new MazePainter();
     pos.init();
+    load = new LoadMaze();
 }
 
 
@@ -73,4 +75,10 @@ void MazeSimulator::msleep( int _time )
     QEventLoop loop;
     QTimer::singleShot( _time, &loop, SLOT( quit() ) );
     loop.exec();
+}
+
+void MazeSimulator::loadMaze(QTextStream *stream, QGraphicsScene *scene)
+{
+    load->mazeData(stream);
+    maze_paint->drawSimulation(scene, &pos);
 }

@@ -79,10 +79,10 @@ public:
       *_gy = gy;
   }
 
-  // マップのインスタンスを渡す
-  Map* getMapInstance()
+  // 壁を追加
+  void addWall(uint8_t x, uint8_t y, bool n, bool w, bool s, bool e)
   {
-      return map;
+      map->addWall( x, y, n, w, s, e );
   }
 
 private:

@@ -50,6 +50,9 @@ public:
   // 壁情報を読み出す
   bool getData( uint8_t x, uint8_t y, uint8_t direction );
 
+  // 壁情報を読み込む
+  void getWallData( ExistWall *exist );
+
 private:
   // 東西南北の壁の追加、削除
   void manegeNorthWall( uint8_t x, uint8_t y, bool exist );
