@@ -1,3 +1,9 @@
+/**
+ * mazepainter.h
+ * @author yuta seya
+ * @date 2019 4.16
+*/
+
 #ifndef MAZEPAINTER_H
 #define MAZEPAINTER_H
 

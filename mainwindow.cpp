@@ -69,7 +69,9 @@ void MainWindow::on_drawMaze_clicked()
 void MainWindow::on_start_clicked()
 {
     writeHistoryDate("simulation start\n");
+    simulator->run(&scene);
     ui->graphicsView->setScene(&scene);
+    writeHistoryDate("simulation end\n");
 }
 
 

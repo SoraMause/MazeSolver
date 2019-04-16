@@ -1,3 +1,9 @@
+/**
+ * mazepainter.cpp
+ * @author yuta seya
+ * @date 2019 4.16
+*/
+
 #include "mazepainter.h"
 
 #include <stdint.h>
@@ -86,20 +92,23 @@ void MazePainter::drawMachine( QGraphicsScene *scene, Position *pos )
     int dx = 7;
     int dy = scale * BOX_SIZE - 37;
     int size = 30;
+    QBrush brush(Qt::SolidPattern);
+    QPen pen;
 
-    for ( int x = 0; x < pos->x; x++ ){
-        dx += x * 45;
-    }
+    pen.setColor(Qt::blue);
+    brush.setColor(Qt::blue);
 
-    for ( int y = 0; y < pos->y; y++ ){
-        dy -= y * 45;
-    }
+    dx += pos->x * 45;
 
-    scene->addRect( dx, dy, size, size );
+    dy -= pos->y * 45;
+
+    scene->addRect( dx, dy, size, size, pen, brush );
+
 }
 
 void MazePainter::drawSimulation(QGraphicsScene *scene, Position *pos)
 {
+    scene->clear();
     draw( scene );
     drawMachine(scene, pos);
 }

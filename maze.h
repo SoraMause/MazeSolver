@@ -9,7 +9,7 @@
 
 #include <stdint.h>
 #include "mazeconf.h"
-#include "Map.h"
+#include "map.h"
 
 struct Position
 {
@@ -70,6 +70,19 @@ public:
   bool getWallData( uint8_t _x, uint8_t _y, uint8_t _direction)
   {
       return map->getData( _x, _y, _direction);
+  }
+
+  // ゴール座標を返す
+  void loadGoalPosition( uint8_t *_gx, uint8_t *_gy )
+  {
+      *_gx = gx;
+      *_gy = gy;
+  }
+
+  // マップのインスタンスを渡す
+  Map* getMapInstance()
+  {
+      return map;
   }
 
 private:

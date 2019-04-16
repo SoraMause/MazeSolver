@@ -1,3 +1,9 @@
+/**
+ * mazeconf.h
+ * @author yuta seya
+ * @date 2019 3.13
+*/
+
 #ifndef MAZECONF_H
 #define MAZECONF_H
 

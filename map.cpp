@@ -53,6 +53,7 @@ void Map::init()
  * @param uint8_t x マウスのx座標
  * @param uint8_t y マウスのy座標
  * @param ExistWall *exist 壁があるかないかの情報が入っている構造体
+ * @param uint8_t direction マウスの向き
  * @return　なし
  * @detail 引数に与えられた座標の壁情報を追加する.
 */
@@ -272,4 +273,27 @@ void Map::manegeEastWall( uint8_t x, uint8_t y, bool exist )
   } else {
     wall.vertical[x+1] &= ~data;
   }
+}
+
+/**
+ * @brief 壁情報の追加
+ * @param uint8_t x マウスのx座標
+ * @param uint8_t y マウスのy座標
+ * @param bool n,w,s,e それぞれの方向の壁情報を入力
+ * @return　なし
+ * @detail 引数に与えられた座標の壁情報を追加する.
+*/
+void Map::addWall(uint8_t x, uint8_t y, bool n, bool w, bool s, bool e )
+{
+    if ( n ) manegeNorthWall(x,y,true);
+    else manegeNorthWall(x,y,false);
+
+    if ( w ) manegeWestWall(x,y,true);
+    else manegeWestWall(x,y,false);
+
+    if ( s ) manegeSouthWall(x,y,true);
+    else manegeSouthWall(x,y,false);
+
+    if ( e ) manegeEastWall(x,y,true);
+    else manegeEastWall(x,y,false);
 }

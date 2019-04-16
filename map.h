@@ -44,6 +44,9 @@ public:
   // 壁情報の追加
   void addWall( uint8_t x, uint8_t y, ExistWall *exist, uint8_t direction );
 
+  // 壁情報の追加
+  void addWall(uint8_t x, uint8_t y, bool n, bool w, bool s, bool e );
+
   // 壁情報を読み出す
   bool getData( uint8_t x, uint8_t y, uint8_t direction );
 
