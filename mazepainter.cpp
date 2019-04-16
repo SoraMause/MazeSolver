@@ -10,7 +10,7 @@ MazePainter::MazePainter()
 void MazePainter::init(QGraphicsScene *scene)
 {
     int maze_scale = maze->getMazeSize();
-    int step = 45;
+    int step = BOX_SIZE;
 
     pen.setColor(Qt::gray);
     pen.setWidth(2);
@@ -27,7 +27,7 @@ void MazePainter::init(QGraphicsScene *scene)
 void MazePainter::draw( QGraphicsScene *scene )
 {
     int maze_scale = maze->getMazeSize();
-    int step = 45;
+    int step = BOX_SIZE;
 
     pen.setColor(Qt::gray);
 
@@ -80,3 +80,26 @@ void MazePainter::draw( QGraphicsScene *scene )
     }
 }
 
+void MazePainter::drawMachine( QGraphicsScene *scene, Position *pos )
+{
+    int scale = maze->getMazeSize();
+    int dx = 7;
+    int dy = scale * BOX_SIZE - 37;
+    int size = 30;
+
+    for ( int x = 0; x < pos->x; x++ ){
+        dx += x * 45;
+    }
+
+    for ( int y = 0; y < pos->y; y++ ){
+        dy -= y * 45;
+    }
+
+    scene->addRect( dx, dy, size, size );
+}
+
+void MazePainter::drawSimulation(QGraphicsScene *scene, Position *pos)
+{
+    draw( scene );
+    drawMachine(scene, pos);
+}

@@ -12,9 +12,15 @@ public:
 
     void draw( QGraphicsScene *scene );
 
+    void drawSimulation( QGraphicsScene *scene, Position *pos );
+
     void init( QGraphicsScene *scene );
 
 private:
+    #define BOX_SIZE 45
+
+    void drawMachine( QGraphicsScene *scene, Position *pos );
+
     Maze *maze;
 
     QPen pen;

@@ -5,6 +5,7 @@
 #include <QtWidgets>
 
 #include "mazepainter.h"
+#include "mazesimulator.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,12 +22,18 @@ public:
 private slots:
     void on_mazeFileLoadButton_clicked();
 
-    void on_pushButton_clicked();
+    void on_drawMaze_clicked();
+
+    void on_start_clicked();
+
+
+
+    void on_quitButton_clicked();
 
 private:
     void init();
 
-    void writeHistoryDate();
+    void writeHistoryDate(  QString str_data );
 
     Ui::MainWindow *ui;
 
@@ -34,8 +41,7 @@ private:
 
     QString history_string;
 
-    MazePainter *maze_paint;
-
+    MazeSimulator *simulator;
 
 };
 

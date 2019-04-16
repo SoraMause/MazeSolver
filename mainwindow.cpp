@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete simulator;
     delete ui;
 }
 
@@ -20,17 +21,20 @@ void MainWindow::init()
     history_string.clear();
     ui->mazeFilePathEdit->setReadOnly(true);
     ui->actionHistory->setReadOnly(true);
-    maze_paint = new MazePainter();
-    maze_paint->init(&scene);
+    simulator = new MazeSimulator();
+    simulator->maze_paint->init(&scene);
     ui->graphicsView->setScene(&scene);
 }
 
-void MainWindow::writeHistoryDate()
+void MainWindow::writeHistoryDate( QString str_data )
 {
     QDateTime dt = QDateTime::currentDateTime();
 
     history_string += dt.toString("yyyy/MM/dd");
     history_string += dt.toString(" hh:mm:ss\n");
+    history_string += str_data;
+
+    ui->actionHistory->setText(history_string);
 }
 
 void MainWindow::on_mazeFileLoadButton_clicked()
@@ -49,20 +53,27 @@ void MainWindow::on_mazeFileLoadButton_clicked()
 
         QTextStream stream(&file);
 
-        writeHistoryDate();
-        history_string += "file load\n" + fileInfo.fileName() + "\n";
-
-        ui->actionHistory->setText(history_string);
+        writeHistoryDate( "file load\n" + fileInfo.fileName() + "\n" );
 
         file.close();
     }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_drawMaze_clicked()
 {
-    writeHistoryDate();
-    history_string += "Draw Maze Data\n";
-    ui->actionHistory->setText(history_string);
-    maze_paint->draw(&scene);
+    writeHistoryDate( "Draw Maze Data\n" );
+    simulator->drawMaze(&scene);
     ui->graphicsView->setScene(&scene);
+}
+
+void MainWindow::on_start_clicked()
+{
+    writeHistoryDate("simulation start\n");
+    ui->graphicsView->setScene(&scene);
+}
+
+
+void MainWindow::on_quitButton_clicked()
+{
+    qApp->quit();
 }
