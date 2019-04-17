@@ -1,5 +1,4 @@
 #include "loadmaze.h"
-#include <stdint.h>
 
 LoadMaze::LoadMaze()
 {
@@ -11,7 +10,7 @@ LoadMaze::~LoadMaze()
 
 }
 
-void LoadMaze::mazeData(QTextStream *maze_data)
+void LoadMaze::mazeData(QTextStream *maze_data, int wall_data[16][16])
 {
     bool n, w, s, e;
     uint8_t north,west,south,east;
@@ -20,6 +19,8 @@ void LoadMaze::mazeData(QTextStream *maze_data)
         QString str = maze_data->readLine();
         QList<QString> list = str.split(" ");
         for ( uint8_t y = 0; y < 16; y++ ){
+            wall_data[x][y] = list[y].toInt();
+
             north = ( list[y].toInt() & 0x01 ) >> 0;
             east = ( list[y].toInt() & 0x02 ) >> 1;
             west = ( list[y].toInt() & 0x04 ) >> 2;

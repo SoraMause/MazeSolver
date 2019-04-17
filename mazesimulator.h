@@ -15,6 +15,8 @@
 
 #include "loadmaze.h"
 
+#include <stdint.h>
+
 class MazeSimulator
 {
 public:
@@ -35,6 +37,10 @@ private:
     void init();
 
     void msleep( int _time );
+
+    void setWallExist();
+
+    int wall_data[16][16];
 
     Position pos;
     ExistWall exist;

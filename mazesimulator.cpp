@@ -51,6 +51,7 @@ void MazeSimulator::run(QGraphicsScene *scene)
     msleep( 500 );
 
     while( pos.x != gx || pos.y != gy ){
+        setWallExist();
         maze->getNextAction( &pos, &exist );
         maze_paint->drawSimulation( scene, &pos );
         msleep( 500 );
@@ -79,6 +80,11 @@ void MazeSimulator::msleep( int _time )
 
 void MazeSimulator::loadMaze(QTextStream *stream, QGraphicsScene *scene)
 {
-    load->mazeData(stream);
+    load->mazeData(stream, wall_data);
     maze_paint->drawSimulation(scene, &pos);
+}
+
+void MazeSimulator::setWallExist()
+{
+
 }

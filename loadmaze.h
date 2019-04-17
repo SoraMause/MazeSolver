@@ -2,6 +2,7 @@
 #define LOADMAZE_H
 
 #include <QtWidgets>
+#include <stdint.h>
 
 #include "maze.h"
 #include "map.h"
@@ -12,11 +13,11 @@ public:
     LoadMaze();
     ~LoadMaze();
 
-    void mazeData(QTextStream *maze_data);
-
+    void mazeData(QTextStream *maze_data, int wall_data[16][16]);
 
 private:
     Maze *maze;
+
 
 };
 
