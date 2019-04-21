@@ -36,6 +36,8 @@ private:
   uint16_t step[16][16];
   bool start = true;
   uint8_t size = 16;
+  uint16_t virtual_goal[16];
+  bool check_all_search = false;
 
 public:
   // コンストラクタ
@@ -85,6 +87,10 @@ public:
       map->addWall( x, y, n, w, s, e );
   }
 
+  // 仮想ゴールを追加する
+  void setVirtualGoal();
+
+
 private:
   // 歩数マップを更新
   void updateStepMap();
@@ -94,6 +100,9 @@ private:
 
   // マシンの座標を更新する
   void updatePosition( Position *pos, uint8_t action );
+
+  // 仮想ゴールの管理を行う
+  void manegeVirtualGoal( uint8_t x, uint8_t y, bool manege );
 
 };
 

@@ -27,6 +27,8 @@ private:
   {
     uint16_t vertical[17];
     uint16_t horizontal[17];
+    uint16_t vertical_known[17];
+    uint16_t horizontal_knwon[17];
   };
 
   WallData wall;
@@ -52,6 +54,9 @@ public:
 
   // 壁情報を読み込む
   void getWallData( ExistWall *exist );
+
+  // 探索したかどうかを確認
+  bool checkWall( uint8_t x, uint8_t y );
 
 private:
   // 東西南北の壁の追加、削除

@@ -59,6 +59,7 @@ void MazeSimulator::run(QGraphicsScene *scene)
 
         if ( pos.x == gx && pos.y == gy ){
             maze->setGoal( 0, 0 );
+            maze->setVirtualGoal();
         }
 
         if ( pos.x == 0 && pos.y == 0 ) break;

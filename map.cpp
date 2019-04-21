@@ -46,6 +46,12 @@ void Map::init()
   wall.horizontal[0] = 0xffff;
   wall.vertical[16] = 0xffff;
   wall.horizontal[16] = 0xffff;
+
+  wall.vertical_known[0] = 0xffff;
+  wall.vertical_known[1] = 0x0001;
+  wall.horizontal_knwon[0] = 0xffff;
+  wall.vertical_known[16] = 0xffff;
+  wall.horizontal_knwon[16] = 0xffff;
 }
 
 /**
@@ -211,6 +217,7 @@ void Map::manegeNorthWall( uint8_t x, uint8_t y, bool exist )
 {
   uint16_t data = 1;
   data <<= x;
+  wall.horizontal_knwon[y+1] |= data;
   if ( exist ){
     wall.horizontal[y+1] |= data;
   } else {
@@ -230,6 +237,7 @@ void Map::manegeSouthWall( uint8_t x, uint8_t y, bool exist )
 {
   uint16_t data = 1;
   data <<= x;
+  wall.horizontal_knwon[y] |= data;
   if ( exist ){
     wall.horizontal[y] |= data;
   } else {
@@ -249,6 +257,7 @@ void Map::manegeWestWall( uint8_t x, uint8_t y, bool exist )
 {
   uint16_t data = 1;
   data <<= y;
+  wall.vertical_known[x] |= data;
   if ( exist ){
     wall.vertical[x] |= data;
   } else {
@@ -268,6 +277,7 @@ void Map::manegeEastWall( uint8_t x, uint8_t y, bool exist )
 {
   uint16_t data = 1;
   data <<= y;
+  wall.vertical_known[x+1] |= data;
   if ( exist ){
     wall.vertical[x+1] |= data;
   } else {
@@ -298,3 +308,51 @@ void Map::addWall(uint8_t x, uint8_t y, bool n, bool w, bool s, bool e )
     else manegeEastWall(x,y,false);
 }
 
+/**
+ * @brief 探索をしたかどうかを返す
+ * @param uint8_t x マウスのx座標
+ * @param uint8_t y マウスのy座標
+ * @return bool t or f
+ * @detail 引数に与えられた座標が探索済みかどうかを返す
+*/
+bool Map::checkWall(uint8_t x, uint8_t y)
+{
+    bool n,s,w,e;
+    uint16_t check_wall = 1;
+    bool check = false;
+
+
+    // north
+    check_wall <<= x;
+    check_wall &= wall.horizontal_knwon[y + 1];
+    if (check_wall != 0) n = true;
+    else n = false;
+    check_wall = 1;
+
+
+    // east
+    check_wall <<= y;
+    check_wall &= wall.vertical_known[x + 1];
+    if (check_wall != 0) e = true;
+    else e = false;
+    check_wall = 1;
+
+    // south
+    check_wall <<= x;
+    check_wall &= wall.horizontal[y];
+    if (check_wall != 0) s = true;
+    else s = false;
+    check_wall = 1;
+
+    // west
+    check_wall <<= y;
+    check_wall &= wall.vertical[x];
+    if (check_wall != 0) w = true;
+    else w = false;
+
+    if ( n && e && s && w ) check = true;
+    else check = false;
+
+    return check;
+
+}
