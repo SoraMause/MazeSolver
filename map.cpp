@@ -38,6 +38,9 @@ void Map::init()
   for ( int i = 0; i < 17; i++ ){
     wall.vertical[i] = 0x0000;
     wall.horizontal[i] = 0x0000;
+    wall.vertical_known[i] = 0x0000;
+    wall.horizontal_knwon[i] = 0x0000;
+
   }
 
   // 外周、スタートの右壁を追加
@@ -339,18 +342,18 @@ bool Map::checkWall(uint8_t x, uint8_t y)
 
     // south
     check_wall <<= x;
-    check_wall &= wall.horizontal[y];
+    check_wall &= wall.horizontal_knwon[y];
     if (check_wall != 0) s = true;
     else s = false;
     check_wall = 1;
 
     // west
     check_wall <<= y;
-    check_wall &= wall.vertical[x];
+    check_wall &= wall.vertical_known[x];
     if (check_wall != 0) w = true;
     else w = false;
 
-    if ( n && e && s && w ) check = true;
+    if ( n == true && e == true && s == true && w == true ) check = true;
     else check = false;
 
     return check;

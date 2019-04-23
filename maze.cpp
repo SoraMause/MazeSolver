@@ -10,6 +10,9 @@
 #include <utility>
 #include "mazeconf.h"
 
+#include "QtDebug"
+
+
 Maze* Maze::instance = nullptr;
 
 /**
@@ -99,6 +102,7 @@ uint8_t Maze::getNextAction( Position *pos, ExistWall *exist )
 {
   uint8_t next = Front;
   if ( start ){
+    map->addWall( pos->x, pos-> y, exist, pos->direction );
     updatePosition( pos, next );
     start = false;
   } else {
@@ -124,46 +128,48 @@ void Maze::updateStepMap()
   std::queue<std::pair<uint8_t, uint8_t>> q;
   std::pair<uint8_t, uint8_t> p;
 
-  for ( uint8_t x = 0; x < 16; x++ ){
-    for ( uint8_t y = 0; y < 16; y++ ){
-        if ( gx == 0 && gy == 0 ){
-            if ( !check_all_search ){
-                if ( map->checkWall(x,y) && ((virtual_goal[y] >> x) & 0x01) == 1)
-                    manegeVirtualGoal(x, y, false);
 
-                if ( ((virtual_goal[y] >> x) & 0x01) == 1 ){
-                    step[x][y] = 0;
-                    q.push(std::pair<uint8_t, uint8_t>(x,y) );
-                    count++;
-                } else {
-                    step[x][y] = MAX_STEP;
-                }
+  if ( gx == 0 && gy == 0 ){
+      if ( !check_all_search ){
+          for ( uint8_t x = 0; x < 16; x++ ){
+              for ( uint8_t y = 0; y < 16; y++ ){
+                  if ( map->checkWall(x,y) && ((virtual_goal[y] >> x) & 0x01) == 1)
+                      manegeVirtualGoal(x, y, false);
 
-                if ( count < 5 ){
-                    check_all_search = true;
-                    step[gx][gy] = 0;
-                    q.push(std::pair<uint8_t, uint8_t>(x,y) );
-                }
-            } else {
-                if ( gx == x && gy == y ) {
-                    step[gx][gy] = 0;
-                    q.push(std::pair<uint8_t, uint8_t>(x,y) );
-                } else {
-                    step[x][y] = MAX_STEP;
-                }
-            }
-        } else {
-            if ( gx == x && gy == y ) {
-                step[gx][gy] = 0;
-                q.push(std::pair<uint8_t, uint8_t>(x,y) );
-            } else {
-                step[x][y] = MAX_STEP;
-            }
-        }
-    }
+                  if ( ((virtual_goal[y] >> x) & 0x01) == 1 ){
+                      step[x][y] = 0;
+                      q.push(std::pair<uint8_t, uint8_t>(x,y) );
+                      count++;
+                      qDebug() << x << y << count << "call";
+                  } else {
+                      step[x][y] = MAX_STEP;
+                  }
+              }
+          }
+
+          if ( count < 6 ){
+              check_all_search = true;
+              step[gx][gy] = 0;
+              q.push(std::pair<uint8_t, uint8_t>(gx,gy) );
+          }
+      } else {
+          for ( uint8_t x = 0; x < 16; x++ ){
+              for ( uint8_t y = 0; y < 16; y++ ){
+                  step[x][y] = MAX_STEP;
+              }
+          }
+          step[gx][gy] = 0;
+          q.push(std::pair<uint8_t, uint8_t>(gx,gy) );
+      }
+  } else {
+      for ( uint8_t x = 0; x < 16; x++ ){
+          for ( uint8_t y = 0; y < 16; y++ ){
+              step[x][y] = MAX_STEP;
+          }
+      }
+      step[gx][gy] = 0;
+      q.push(std::pair<uint8_t, uint8_t>(gx,gy) );
   }
-
-
 
 
   while( !q.empty() ){
@@ -286,6 +292,12 @@ void Maze::updatePosition( Position *pos, uint8_t action )
 */
 void Maze::setVirtualGoal()
 {
+    check_all_search = false;
+
+    for ( int y = 0; y < 16; y++ ){
+        virtual_goal[y] = 0;
+    }
+
     for ( uint8_t x = 0; x < size; x++ ){
         for ( uint8_t y = 0; y < size; y++ ){
             if ( !map->checkWall(x, y) ) manegeVirtualGoal(x, y, true);
