@@ -10,9 +10,6 @@
 #include <utility>
 #include "mazeconf.h"
 
-#include "QtDebug"
-
-
 Maze* Maze::instance = nullptr;
 
 /**
@@ -140,7 +137,6 @@ void Maze::updateStepMap()
                       step[x][y] = 0;
                       q.push(std::pair<uint8_t, uint8_t>(x,y) );
                       count++;
-                      qDebug() << x << y << count << "call";
                   } else {
                       step[x][y] = MAX_STEP;
                   }

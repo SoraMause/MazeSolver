@@ -24,6 +24,7 @@ void MainWindow::init()
     simulator = new MazeSimulator();
     simulator->maze_paint->init(&scene);
     ui->graphicsView->setScene(&scene);
+    ui->graphicsView->setStyleSheet("background:#000000");
 }
 
 void MainWindow::writeHistoryDate( QString str_data )

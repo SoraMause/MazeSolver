@@ -80,6 +80,7 @@ void MazeSimulator::loadMaze(QTextStream *stream, QGraphicsScene *scene)
 {
     load->mazeData(stream, wall_data);
     maze_paint->drawSimulation(scene, &pos);
+    maze_paint->inputWall(wall_data);
 }
 
 void MazeSimulator::setWallExist()

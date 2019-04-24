@@ -22,6 +22,8 @@ public:
 
     void init( QGraphicsScene *scene );
 
+    void inputWall( int wall_data[16][16]);
+
 private:
     #define BOX_SIZE 45
 
@@ -30,6 +32,8 @@ private:
     Maze *maze;
 
     QPen pen;
+
+    int wall[16][16];
 };
 
 #endif // MAZEPAINTER_H
