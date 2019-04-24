@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QtWidgets>
 
-#include "mazepainter.h"
 #include "mazesimulator.h"
 
 namespace Ui {
@@ -25,8 +24,6 @@ private slots:
     void on_drawMaze_clicked();
 
     void on_start_clicked();
-
-
 
     void on_quitButton_clicked();
 

@@ -135,9 +135,9 @@ void MazePainter::drawMachine( QGraphicsScene *scene, Position *pos )
 
 }
 
-void MazePainter::drawSimulation(QGraphicsScene *scene, Position *pos)
+void MazePainter::drawSimulation(QGraphicsScene *scene, Position *pos, bool isMachine)
 {
     scene->clear();
     draw( scene );
-    drawMachine(scene, pos);
+    if (isMachine) drawMachine(scene, pos);
 }

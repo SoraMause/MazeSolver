@@ -35,7 +35,7 @@ void MazeSimulator::drawMaze(QGraphicsScene *scene)
 {
     pos.init();
     maze->resetMap();
-    maze_paint->drawSimulation( scene, &pos );
+    maze_paint->drawSimulation( scene, &pos, false );
 }
 
 void MazeSimulator::run(QGraphicsScene *scene)
@@ -47,14 +47,14 @@ void MazeSimulator::run(QGraphicsScene *scene)
     uint8_t gx, gy;
 
     maze->loadGoalPosition( &gx, &gy );
-    maze_paint->drawSimulation( scene, &pos );
+    maze_paint->drawSimulation( scene, &pos, true );
 
     msleep( 500 );
 
     while( 1 ){
         setWallExist();
         maze->getNextAction( &pos, &exist );
-        maze_paint->drawSimulation( scene, &pos );
+        maze_paint->drawSimulation( scene, &pos, true );
         msleep( 100 );
 
         if ( pos.x == gx && pos.y == gy ){
@@ -79,7 +79,7 @@ void MazeSimulator::msleep( int _time )
 void MazeSimulator::loadMaze(QTextStream *stream, QGraphicsScene *scene)
 {
     load->mazeData(stream, wall_data);
-    maze_paint->drawSimulation(scene, &pos);
+    maze_paint->drawSimulation(scene, &pos, false);
     maze_paint->inputWall(wall_data);
 }
 

@@ -18,7 +18,7 @@ public:
 
     void draw( QGraphicsScene *scene );
 
-    void drawSimulation( QGraphicsScene *scene, Position *pos );
+    void drawSimulation( QGraphicsScene *scene, Position *pos, bool isMachine );
 
     void init( QGraphicsScene *scene );
 
